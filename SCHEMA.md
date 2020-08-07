@@ -1,6 +1,6 @@
-# Recipe Collector Schema
+# Recipe Collector
 
-Version 1.0.0
+## Schema Version 1.0.0
 
 ---
 
@@ -40,3 +40,10 @@ Version 1.0.0
         instructions[]
         categories[]
         tags[]
+
+## API Version 1.0.0
+
+| `GET`               | Response |
+| ------------------- | -------- |
+| `/api/v1/recipes`   | `[]`     |
+| `/api/v1/recipe:id` | `{}`     |
