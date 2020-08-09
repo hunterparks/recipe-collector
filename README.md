@@ -1,6 +1,6 @@
-# Recipe Collector (Back-End)
+# Recipe Collector
 
-A flask sever to serve as the back end for the Recipe Collector application. The front end repository for this project can be found [here](#).
+A project to serve as the basis for the Recipe Collector application.
 
 ## Getting Started
 
