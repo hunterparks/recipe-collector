@@ -4,42 +4,50 @@
 
 ---
 
-| Recipe |          |             |           |
-| ------ | -------- | ----------- | --------- |
-| Field  | Type     | Required?   | Nullable? |
-| id     | `int`    | ✔           | ❌       |
-| name   | `string` | ✔           | ❌       |
-| author
-| image_url
-| source_url
-| ingredients | `Ingredient[]` |
-| directions  | `string[]`     |
-| prep_time   | `Prep_Time`    |
-| cook_time
+| User       |             |           |           |
+| ---------- | ----------- | --------- | --------- |
+| Field      | Type        | Required? | Nullable? |
+| _id        | `Object ID` | ✔         | ❌       |
+| username   | `String`    | ✔         | ❌       |
+| email      | `String`    | ✔         | ❌       |
+| password   | `String`    | ✔         | ❌       |
+| role       | `String`    | ❌        | ✔        |
+| created_at | `Date`      | ✔         | ❌       |
+| updated_at | `Date`      | ✔         | ❌       |
+| deleted_at | `Date`      | ❌        | ✔        |
 
+<br/>
 
-    Recipe
-        name
-        author
-        source_url
-        image_url
-        prep_time
-            quantity
-            unit
-        cook_time
-            quantity
-            unit
-        yields
-            quantity
-            unit
-        ingredients[]
-            name
-            quantity
-            unit
-            done-ness?
-        instructions[]
-        categories[]
-        tags[]
+| Recipe       |             |           |           |             |
+| ------------ | ----------- | --------- | --------- | ----------- |
+| Field        | Type        | Required? | Nullable? | Foreign Key |
+| _id          | `Object ID` | ✔         | ❌       | -           |
+| name         | `String`    | ✔         | ❌       | -           |
+| author       | `String`    | ✔         | ❌       | -           |
+| source_url   | `String`    | ✔         | ❌       | -           |
+| image_url    | `String`    | ✔         | ❌       | -           |
+| prep_time    | `String`    | ✔         | ❌       | -           |
+| cook_time    | `String`    | ✔         | ❌       | -           |
+| yields       | `String`    | ✔         | ❌       | -           |
+| ingredients  | `String[]`  | ✔         | ❌       | -           |
+| notes        | `String[]`  | ✔         | ❌       | -           |
+| instructions | `String[]`  | ✔         | ❌       | -           |
+| categories   | `String[]`  | ✔         | ❌       | -           |
+| tags         | `String[]`  | ✔         | ❌       | -           |
+| created_by   | `Object ID` | ✔         | ❌       | User._id    |
+| created_at   | `Date`      | ✔         | ❌       | -           |
+| updated_at   | `Date`      | ✔         | ❌       | -           |
+| deleted_at   | `Date`      | ❌        | ✔        | -           |
+
+```python
+# Future Schema Plans
+#   prep_time = { quantity: Double, unit: String }
+#   cook_time = { quantity: Double, unit: String }
+#   yields    = { quantity: Double, unit: String }
+#   ingredients = [
+#     { name: String, quantity: Double, unit: String, instruction: String }
+#   ]
+```
 
 ## API Version 1.0.0
 
@@ -47,3 +55,18 @@
 | ------------------- | -------- |
 | `/api/v1/recipes`   | `[]`     |
 | `/api/v1/recipe:id` | `{}`     |
+
+<br/>
+
+| `POST`              | Response |
+| ------------------- | -------- |
+
+<br/>
+
+| `PUT`               | Response |
+| ------------------- | -------- |
+
+<br/>
+
+| `DELETE`            | Response |
+| ------------------- | -------- |
