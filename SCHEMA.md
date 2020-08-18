@@ -51,10 +51,10 @@
 
 ## API Version 1.0.0
 
-| `GET`               | Response |
-| ------------------- | -------- |
-| `/api/v1/recipes`   | `[]`     |
-| `/api/v1/recipe:id` | `{}`     |
+| `GET`                 | Response |
+| --------------------- | -------- |
+| `/api/v1/recipes`     | `[]`     |
+| `/api/v1/recipes/:id` | `{}`     |
 
 <br/>
 
