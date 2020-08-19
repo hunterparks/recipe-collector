@@ -19,4 +19,4 @@ class Recipes(Resource):
                 'data': recipes[id]
             }
         else:
-            abort(404, message = 'You\'re dumb.')
+            abort(404, message = 'ID not found.')
