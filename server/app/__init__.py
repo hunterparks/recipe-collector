@@ -1,10 +1,10 @@
 import os
 from flask import Flask
 from flask_restful import Resource, Api
-from dotenv import load_dotenv
-from pathlib import Path
 
 # Load environment variables
+from dotenv import load_dotenv
+from pathlib import Path
 env_path = Path('..') / '.flaskenv'
 load_dotenv(dotenv_path = env_path)
 
@@ -15,14 +15,30 @@ api = Api(
     prefix = '/api/v1'
 )
 
+# Connect to database
+from flask_pymongo import PyMongo
+
+MONGO_USERNAME = os.getenv('MONGO_RC_USERNAME')
+MONGO_PASSWORD = os.getenv('MONGO_RC_PASSWORD')
+MONGO_HOST = os.getenv('MONGO_RC_HOST')
+MONGO_PORT = os.getenv('MONGO_RC_PORT')
+MONGO_DBNAME = os.getenv('MONGO_RC_DBNAME')
+
+app.config['MONGO_URI'] = f'mongodb://{MONGO_USERNAME}:{MONGO_PASSWORD}@{MONGO_HOST}:{MONGO_PORT}/{MONGO_DBNAME}'
+mongo = PyMongo(app)
+
+# === MAIN ===
+
 # Default Routes
 from app.routes import Default
 api.add_resource(Default, '/')
 
 # Recipes Routes
-from app.routes.recipes import RecipesResource, Recipes
-api.add_resource(RecipesResource, '/recipes')
-api.add_resource(Recipes, '/recipes/<int:id>')
+from app.routes.recipes import RecipesCollection, Recipes
+api.add_resource(RecipesCollection, '/recipes')
+api.add_resource(Recipes, '/recipes/<string:id>')
+from app.routes.recipes.parse import RecipesParse
+api.add_resource(RecipesParse, '/recipes/parse')
 
 # Diagnostics Routes
 from app.routes.diagnostics import Info#, Status

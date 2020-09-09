@@ -22,7 +22,7 @@
 | ------------ | ----------- | --------- | --------- | ----------- |
 | Field        | Type        | Required? | Nullable? | Foreign Key |
 | _id          | `Object ID` | ✔         | ❌       | -           |
-| name         | `String`    | ✔         | ❌       | -           |
+| title        | `String`    | ✔         | ❌       | -           |
 | author       | `String`    | ✔         | ❌       | -           |
 | source_url   | `String`    | ✔         | ❌       | -           |
 | image_url    | `String`    | ✔         | ❌       | -           |
