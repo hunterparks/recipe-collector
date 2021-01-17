@@ -82,8 +82,14 @@ class RecipesCollection(Resource):
 # Handles Specific Recipes
 class Recipes(Resource):
     def get(self, id):
-        recipe = mongo.db.recipe.find_one({ '_id': ObjectId(id) })
+        recipe = mongo.db.recipe.find_one({ '_id': ObjectId(id), 'deleted_at': None })
         if recipe is not None:
             return { 'data': RecipeModel.decode(recipe).encode() }, 200
         else:
             return { 'exception': f'Unable to find recipe {id}' }, 404
+    def delete(self, id):
+        result = mongo.db.recipe.update_one({ '_id': ObjectId(id) }, { '$set': { 'deleted_at': datetime.utcnow() }})
+        if result.modified_count == 1:
+            return { 'message': f'Recipe {id} was deleted.' }, 200
+        else:
+            return { 'exception': 'Unable to delete recipe.' }, 404
